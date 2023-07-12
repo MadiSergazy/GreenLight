@@ -19,6 +19,8 @@ func (app *application) routes() http.Handler {
 	r.HandlerFunc(http.MethodDelete, "/v1/movies/:id", app.deleteMovieHandler)
 	r.HandlerFunc(http.MethodPost, "/v1/users", app.registerUserHandler)
 	r.HandlerFunc(http.MethodPut, "/v1/users/activated", app.activateUserHandler)
+	// Add the route for the POST /v1/tokens/authentication endpoint.
+	r.HandlerFunc(http.MethodPost, "/v1/tokens/authentication", app.createAuthenticationTokenHandler)
 
 	return app.recoverPanic(app.rateLimit(r))
 }

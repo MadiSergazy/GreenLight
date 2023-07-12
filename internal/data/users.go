@@ -1,11 +1,11 @@
 package data
 
 import (
-	"Greenlight/internal/validator"
 	"crypto/sha256"
 	"database/sql"
 	"errors"
 	"golang.org/x/crypto/bcrypt"
+	"mado/internal/validator"
 	"time"
 )
 

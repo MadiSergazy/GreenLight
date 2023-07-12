@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/exvimmer/lets_go_further/greenlight/internal/validator"
 	"github.com/julienschmidt/httprouter"
+	"mado/internal/validator"
 )
 
 type envelope map[string]any
