@@ -7,20 +7,21 @@ import (
 )
 
 func (app *application) routes() http.Handler {
-	r := httprouter.New()
-	r.NotFound = http.HandlerFunc(app.notFoundResponse)
-	r.MethodNotAllowed = http.HandlerFunc(app.methodNotAllowedResponse)
+	router := httprouter.New()
+	router.NotFound = http.HandlerFunc(app.notFoundResponse)
+	router.MethodNotAllowed = http.HandlerFunc(app.methodNotAllowedResponse)
 
-	r.HandlerFunc(http.MethodGet, "/v1/movies", app.listMoviesHandler)
-	r.HandlerFunc(http.MethodGet, "/v1/healthcheck", app.healthcheckHandler)
-	r.HandlerFunc(http.MethodPost, "/v1/movies", app.createMovieHandler)
-	r.HandlerFunc(http.MethodGet, "/v1/movies/:id", app.showMovieHandler)
-	r.HandlerFunc(http.MethodPatch, "/v1/movies/:id", app.updateMovieHandler)
-	r.HandlerFunc(http.MethodDelete, "/v1/movies/:id", app.deleteMovieHandler)
-	r.HandlerFunc(http.MethodPost, "/v1/users", app.registerUserHandler)
-	r.HandlerFunc(http.MethodPut, "/v1/users/activated", app.activateUserHandler)
+	router.HandlerFunc(http.MethodGet, "/v1/movies", app.listMoviesHandler)
+	router.HandlerFunc(http.MethodGet, "/v1/healthcheck", app.healthcheckHandler)
+	router.HandlerFunc(http.MethodPost, "/v1/movies", app.createMovieHandler)
+	router.HandlerFunc(http.MethodGet, "/v1/movies/:id", app.showMovieHandler)
+	router.HandlerFunc(http.MethodPatch, "/v1/movies/:id", app.updateMovieHandler)
+	router.HandlerFunc(http.MethodDelete, "/v1/movies/:id", app.deleteMovieHandler)
+	router.HandlerFunc(http.MethodPost, "/v1/users", app.registerUserHandler)
+	router.HandlerFunc(http.MethodPut, "/v1/users/activated", app.activateUserHandler)
 	// Add the route for the POST /v1/tokens/authentication endpoint.
-	r.HandlerFunc(http.MethodPost, "/v1/tokens/authentication", app.createAuthenticationTokenHandler)
+	router.HandlerFunc(http.MethodPost, "/v1/tokens/authentication", app.createAuthenticationTokenHandler)
 
-	return app.recoverPanic(app.rateLimit(r))
+	// Use the authenticate() middleware on all requests.
+	return app.recoverPanic(app.rateLimit(app.authenticate(router)))
 }

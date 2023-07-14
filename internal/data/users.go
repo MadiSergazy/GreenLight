@@ -1,6 +1,7 @@
 package data
 
 import (
+	"context"
 	"crypto/sha256"
 	"database/sql"
 	"errors"
@@ -8,6 +9,13 @@ import (
 	"mado/internal/validator"
 	"time"
 )
+
+// Declare a new AnonymousUser variable.
+var AnonymousUser = &User{}
+
+func (u *User) IsAnonymous() bool {
+	return u == AnonymousUser
+}
 
 type UserModel struct {
 	DB *sql.DB
@@ -70,7 +78,7 @@ func (p *password) Matches(plaintextPassword string) (bool, error) {
 
 func ValidateEmail(v *validator.Validator, email string) {
 	v.Check(email != "", "email", "must be provided")
-	v.Check(validator.Matches(email, validator.EmailRX), "email", "must be a valid email address")
+	v.Check(validator.Matches(email, validator.EmailRx), "email", "must be a valid email address")
 }
 func ValidatePasswordPlaintext(v *validator.Validator, password string) {
 	v.Check(password != "", "password", "must be provided")
