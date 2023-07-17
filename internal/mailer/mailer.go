@@ -3,6 +3,7 @@ package mailer
 import (
 	"bytes"
 	"embed"
+	"html/template"
 	mail "net/mail"
 	"time"
 )

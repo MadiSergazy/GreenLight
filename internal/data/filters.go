@@ -4,7 +4,7 @@ import (
 	"math"
 	"strings"
 
-	"github.com/exvimmer/lets_go_further/greenlight/internal/validator"
+	"mado/internal/validator"
 )
 
 type Filters struct {

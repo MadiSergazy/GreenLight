@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/exvimmer/lets_go_further/greenlight/internal/data"
-	"github.com/exvimmer/lets_go_further/greenlight/internal/validator"
+	"mado/internal/data"
+	"mado/internal/validator"
 )
 
 func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Request) {

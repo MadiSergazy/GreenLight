@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/exvimmer/lets_go_further/greenlight/internal/validator"
+	"mado/internal/validator"
+
 	"github.com/lib/pq"
 )
 
