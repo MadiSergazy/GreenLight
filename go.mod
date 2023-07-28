@@ -8,4 +8,7 @@ require (
 	golang.org/x/time v0.3.0
 )
 
-require golang.org/x/crypto v0.11.0 // indirect
+require (
+	github.com/felixge/httpsnoop v1.0.3 // indirect
+	golang.org/x/crypto v0.11.0 // indirect
+)
