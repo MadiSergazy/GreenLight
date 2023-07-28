@@ -11,6 +11,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/felixge/httpsnoop"
 	"golang.org/x/time/rate"
 
 	"mado/internal/data"
@@ -278,7 +279,7 @@ func (app *application) metrics(next http.Handler) http.Handler {
 		metrics := httpsnoop.CaptureMetrics(next, w, r)
 
 		// Call the next handler in the chain.
-		next.ServeHTTP(w, r)
+		// next.ServeHTTP(w, r)
 		// On the way back up the middleware chain, increment the number of responses
 		// sent by 1.
 		totalResponsesSent.Add(1)

@@ -3,19 +3,11 @@ package data
 import (
 	"context"
 	"database/sql"
-<<<<<<< HEAD
-	"github.com/lib/pq"
-	"time"
-)
-
-// "movies:read" and "movies:write") for a single user.
-=======
 	"time"
 
 	"github.com/lib/pq"
 )
 
->>>>>>> 8538e24fce30ecbdc2156c185f70e0f24b335c65
 type Permissions []string
 
 // Add a helper method to check whether the Permissions slice contains a specific
@@ -34,14 +26,6 @@ type PermissionModel struct {
 	DB *sql.DB
 }
 
-// The GetAllForUser() method returns all permission codes for a specific user in a
-<<<<<<< HEAD
-// Permissions slice. The code in this method should feel very familiar --- it uses the
-// standard pattern that we've already seen before for retrieving multiple data rows in
-// an SQL query.
-=======
-// Permissions slice
->>>>>>> 8538e24fce30ecbdc2156c185f70e0f24b335c65
 func (m PermissionModel) GetAllForUser(userID int64) (Permissions, error) {
 	query := `
 SELECT permissions.code

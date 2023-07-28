@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"expvar"
 	"flag"
-	"mado/internal/mailer"
 	"os"
 	"runtime"
 	"strings"
@@ -13,8 +12,10 @@ import (
 	"time"
 
 	_ "github.com/lib/pq"
+
 	"mado/internal/data"
 	"mado/internal/jsonlog"
+	"mado/internal/mailer"
 )
 
 const version = "1.0.0" // TODO: generate automatically at build time
@@ -65,7 +66,7 @@ func main() {
 		"db-dsn",
 		// TODO: create an environment variable, GREENLIGHT_DB_DSN, like
 		// postgres://username:password@host/dbname
-		os.Getenv("GREENLIGHT_DB_DSN"),
+		"", //os.Getenv("GREENLIGHT_DB_DSN"),     ///it is already in makeFIle
 		"PostgreSQL DSN",
 	)
 	flag.IntVar(&cfg.db.maxOpenConns, "db-max-open-conns", 25,
